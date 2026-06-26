@@ -37,6 +37,7 @@ enum queue_state {
 #define KNP_HAL_VER 2
 #define HAWI_HAL_VER 3
 #define GLYMUR_HAL_VER 4
+#define NORDAU_HAL_VER 5
 
 #ifdef CONFIG_EVA_KALAMA
 #define CVP_SYNX_ENABLED 1
@@ -71,9 +72,6 @@ enum queue_state {
 
 #define CVP_GENPD_ENABLED 1
 #define CVP_OPP_ENABLED 1
-#ifdef CONFIG_EVA_GLYMUR
-#define CVP_KVM_ENABLED 1
-#endif /* End of CONFIG_EVA_GLYMUR*/
 
 #ifdef CONFIG_EVA_ART
 #define CVP_SYNX_ENABLED 1
