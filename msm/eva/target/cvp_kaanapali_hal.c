@@ -6,6 +6,7 @@
 
 
 #include "cvp_kaanapali_hal.h"
+#include "cvp_kaanapali_io.h"
 
 extern struct cvp_hal_ops hal_ops;
 

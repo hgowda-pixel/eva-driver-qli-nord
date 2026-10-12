@@ -19,9 +19,8 @@
 #include "cvp_hfi_v2.h"
 #endif
 
-#ifdef CONFIG_EVA_GLYMUR
+/* Both DT-selectable runtime targets use the v2 HFI protocol. */
 #include "cvp_hfi_v2.h"
-#endif
 
 #include "msm_cvp_resources.h"
 
