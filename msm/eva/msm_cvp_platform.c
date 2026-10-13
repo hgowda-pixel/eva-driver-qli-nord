@@ -88,6 +88,7 @@ static struct msm_cvp_common_data sm8450_common_data[] = {
 	{
 		.key = "qcom,max-supported-instances",
 		.value = 16,
+    
 	},
 	{
 		.key = "qcom,max-ssr-allowed",
