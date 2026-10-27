@@ -1358,6 +1358,7 @@ static struct msm_cvp_platform_data sm8735_data = {
 };
 
 static struct msm_cvp_platform_data sm8850_data = {
+	.io_registers = &cvp_kaanapali_io_registers,
 	.common_data = sm8850_common_data,
 	.common_data_length = ARRAY_SIZE(sm8850_common_data),
 	.sku_version = 0,

@@ -68,7 +68,7 @@ struct cvp_hfi_io_registers {
 	u32 tcsr_reg_size;
 };
 
-/* Expand only in cvp_{glymur,nordau}_hal.c after its target IO include. */
+/* Expand only in cvp_{glymur,kaanapali,nordau}_hal.c after its target IO include. */
 #define CVP_HFI_IO_REGISTERS_INIT \
 	.ctrl_init = CVP_CTRL_INIT, \
 	.ctrl_status = CVP_CTRL_STATUS, \
@@ -127,4 +127,5 @@ struct cvp_hfi_io_registers {
 	.tcsr_reg_size = TCSR_REG_SIZE
 
 extern const struct cvp_hfi_io_registers cvp_glymur_io_registers;
+extern const struct cvp_hfi_io_registers cvp_kaanapali_io_registers;
 extern const struct cvp_hfi_io_registers cvp_nordau_io_registers;
