@@ -24,13 +24,7 @@
 #include "cvp_hfi_api.h"
 #include "cvp_hfi.h"
 #include "cvp_hfi_io.h"
-#include <dt-bindings/clock/qcom,glymur-evacc.h>
-#include <dt-bindings/clock/qcom,glymur-gcc.h>
-#include <dt-bindings/clock/qcom,kaanapali-evacc.h>
-#include <dt-bindings/clock/qcom,kaanapali-gcc.h>
-#include <dt-bindings/clock/qcom,nord-evacc.h>
-#include <dt-bindings/clock/qcom,nord-gcc.h>
-#include <dt-bindings/clock/qcom,nord-nwgcc.h>
+#include "target/cvp_clock_ids.h"
 
 extern int of_fdt_get_ddrtype(void);
 
@@ -1069,29 +1063,6 @@ static const struct cvp_iommu_context_bank kaanapali_cvp_context_banks[] = {
     },
 };
 
-/* clock-ids should have same sequence as clocks in DT*/
-static const u32 eva_glymur_clock_ids[] = {
-        GCC_EVA_AXI0C_CLK,
-        EVA_CC_SLEEP_CLK,
-        EVA_CC_MVS0C_FREERUN_CLK,
-		EVA_CC_MVS0C_CLK,
-		GCC_EVA_AXI0_CLK,
-        EVA_CC_MVS0_FREERUN_CLK,   
-        EVA_CC_MVS0_CLK,
-};
-
-
-/* clock-ids should have same sequence as clocks in DT*/
-static const u32 eva_kaanapali_clock_ids[] = {
-        GCC_EVA_AXI0C_CLK,
-        EVA_CC_SLEEP_CLK,
-        EVA_CC_MVS0C_FREERUN_CLK,
-        EVA_CC_MVS0C_CLK,
-        GCC_EVA_AXI0_CLK,
-        EVA_CC_MVS0_FREERUN_CLK,
-        EVA_CC_MVS0_CLK,
-};
-
 static const char * const cvp_nordau_cache_slice_names[] = {
     "cvp",
 };
@@ -1250,15 +1221,6 @@ static const struct cvp_iommu_context_bank nordau_cvp_context_banks[] = {
 };
 
 
-static const u32 eva_nordau_clock_ids[] = {
-	NW_GCC_EVA_AXI0C_CLK,
-	NW_GCC_EVA_AXI0_CLK,
-	EVA_CC_SLEEP_CLK,
-	EVA_CC_MVS0C_FREERUN_CLK,
-	EVA_CC_MVS0_FREERUN_CLK,
-	EVA_CC_MVS0C_CLK,
-	EVA_CC_MVS0_CLK,
-};
 static struct msm_cvp_platform_data default_data = {
 	.common_data = default_common_data,
 	.common_data_length =  ARRAY_SIZE(default_common_data),
@@ -1378,8 +1340,8 @@ static struct msm_cvp_platform_data sm8850_data = {
 	.reset_power_sets = &cvp_kaanapali_reset_power_set_desc,
 	.power_domains = &kaanapali_power_domains,
 	.clock_props = &kaanapali_clock_props,
-	.clock_ids = eva_kaanapali_clock_ids, 
-	.num_clock_ids = ARRAY_SIZE(eva_kaanapali_clock_ids),
+	.clock_ids = cvp_kaanapali_clock_ids,
+	.num_clock_ids = CVP_KAANAPALI_CLOCK_IDS_COUNT,
 	.allowed_clk_rates = &kaanapali_allowed_clocks,
 	.opp_clk_tbl = kaanapali_eva_opp_clk_names,
 	.opp_pd_tbl = kaanapali_opp_pd_table,
@@ -1412,8 +1374,8 @@ static struct msm_cvp_platform_data glymur_data = {
     .reset_power_sets = &cvp_glymur_reset_power_set_desc,
     .power_domains = &glymur_power_domains,
     .clock_props = &glymur_clock_props,
-	.clock_ids = eva_glymur_clock_ids, 
-	.num_clock_ids = ARRAY_SIZE(eva_glymur_clock_ids),
+	.clock_ids = cvp_glymur_clock_ids,
+	.num_clock_ids = CVP_GLYMUR_CLOCK_IDS_COUNT,
     .allowed_clk_rates = &glymur_allowed_clocks,
     .opp_clk_tbl = glymur_eva_opp_clk_names,
     .opp_pd_tbl = glymur_opp_pd_table,
@@ -1491,8 +1453,8 @@ static struct msm_cvp_platform_data nordau_data = {
 	.reset_power_sets = &cvp_nordau_reset_power_set_desc,	/* [DT] 1 reset; value [INH] */
 	.power_domains = &nordau_power_domains,			/* [DT]+[CSV] pd_count=2, idx=2; hw_pc [INH] */
 	.clock_props = &nordau_clock_props,			/* [DT]+[CSV] re-indexed for NORDAU order */
-	.clock_ids = eva_nordau_clock_ids,			/* [DT] dtsi:18-24 order */
-	.num_clock_ids = ARRAY_SIZE(eva_nordau_clock_ids),	/* 7 — must equal DT clock count */
+	.clock_ids = cvp_nordau_clock_ids,			/* [DT] dtsi:18-24 order */
+	.num_clock_ids = CVP_NORDAU_CLOCK_IDS_COUNT,	/* 7 — must equal DT clock count */
 	.allowed_clk_rates = &nordau_allowed_clocks,		/* [CSV] eva_cc_mvs0_clk, deduped */
 	.opp_clk_tbl = nordau_eva_opp_clk_names,		/* [DT] core0,eva0 per opp-hz pair order */
 	.opp_pd_tbl = nordau_opp_pd_table,			/* [DT] mxc,mmcx dtsi:14-15 */

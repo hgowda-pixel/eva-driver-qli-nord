@@ -161,7 +161,7 @@ static int __load_fw_to_memory(struct iris_hfi_device *device,
 	}
 
 	release_firmware(firmware);
-	dprintk(CVP_CORE, "%s: firmware \"%s\" loaded successfully\n",
+	dprintk(CVP_CORE, "%s: firmware \"%s\" loaded successfully HP\n",
 			__func__, firmware_name);
 	return pas_id;
 
